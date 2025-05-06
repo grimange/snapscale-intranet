@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Snapscale Intranet">
+        <meta name="keywords" content="Snapscale, Intranet, snappies">
+        <meta name="author" content="Workplace Technology">
+        <meta name="csrf-token" content="{{ csrf_token }}">
+        <title>{{ title|default:"Snapscale Intranet" }}</title>
+        {% include 'layouts/themes/01/css-scripts.html' %}
+    </head>
+    <body>
+        <!-- loader starts-->
+            {% include 'layouts/themes/01/loader-wrapper.html' %}
+        <!-- loader ends-->
+        <!-- page-wrapper Start-->
+        <div class="page-wrapper compact-wrapper" id="pageWrapper">
+            {% include 'layouts/themes/01/header.html' %}
+            <!-- Page Body Start-->
+            <div class="page-body-wrapper">
+                {% include 'layouts/themes/01/sidebar.html' %}
+                <div class="page-body">
+                    {% include 'layouts/themes/01/breadcrumb.html' %}
+                    {% block content %}
+                    {% endblock %}
+                </div>
+                {% include 'layouts/themes/01/footer.html' %}
+            </div>
+        </div>
+        {% include 'layouts/themes/01/js-scripts.html' %}
+    </body>
+</html>
