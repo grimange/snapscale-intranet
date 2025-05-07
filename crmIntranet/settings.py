@@ -99,7 +99,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'compressor',
     'sass_processor',
-    'dashboard'
+    'dashboard',
 ]
 
 MIDDLEWARE = [
