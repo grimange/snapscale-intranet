@@ -276,13 +276,7 @@
       en: "Profile",
     },
     {
-      en: "Page layout",
-      pt: "Layout da pÃ¡gina",
-      es: "PaÄa aranÄo",
-      fr: "Tableaux",
-      de: "Mise en page",
-      cn: "é é¢ä½ˆå±€",
-      ae: "ÙˆØªØ®Ø·ÙŠØ· Ø§Ù„ØµÙØ­Ø©",
+      en: "GENERAL",
     },
     {
       en: "Applications",
