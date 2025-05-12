@@ -100,6 +100,7 @@ INSTALLED_APPS = [
     'compressor',
     'sass_processor',
     'dashboard',
+    'users'
 ]
 
 MIDDLEWARE = [
