@@ -25,9 +25,9 @@ load_dotenv(BASE_DIR / '.env')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# logger = logging.getLogger('django_auth_ldap')
-# logger.addHandler(logging.StreamHandler())
-# logger.setLevel(logging.DEBUG)
+logger = logging.getLogger('django_auth_ldap')
+logger.addHandler(logging.StreamHandler())
+logger.setLevel(logging.DEBUG)
 
 # Optional: Cache LDAP groups
 AUTH_LDAP_CACHE_TIMEOUT = 3600  # 1 hour

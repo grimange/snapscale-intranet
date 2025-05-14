@@ -1,0 +1,24 @@
+<div class="modal fade" id="multiProfileModal" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="multiProfileModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content custom-input">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="multiProfileTitle">Multiple Profiles Found</h5>
+                  <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-bookmark needs-validation" id="multiProfileForm" novalidate="">
+                        <div class="row" id="multiProfileFormWrapperRow">
+                            <div class="mb-3 mt-2 col-md-6">
+                                <label class="form-label">Name</label>
+                                <input class="form-control" type="text" id="addPartName" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" id="multiProfileSavePartButton">Submit</button>
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+</div>

@@ -3,12 +3,14 @@ import pandas as pd
 from datetime import datetime
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.contrib.auth import get_user_model
 
 
 class EmployeesManager(models.Manager):
-    sheet_id = "1CvTfC-cuYmVnvFoevBvrsAwZwgWP-m--foohtKYMMuY"
+    sheetId_bbc_employee_profile = "1CvTfC-cuYmVnvFoevBvrsAwZwgWP-m--foohtKYMMuY"
+    sheetId_consolidated_report = "18pRbLbuJ9JZT2f2fbcXQEYViIFX5p3rtf98-MLkJtZU"
     gid = "0"
+    gidCr = "1970454707"
 
     @staticmethod
     def cleanUp(string):
@@ -59,12 +61,31 @@ class EmployeesManager(models.Manager):
 
     def sync_bbc_spreadsheet(self):
         # Construct the CSV export URL
-        csv_url = f"https://docs.google.com/spreadsheets/d/{self.sheet_id}/export?format=csv&gid={self.gid}"
+        csv_url = f"https://docs.google.com/spreadsheets/d/{self.sheetId_bbc_employee_profile}/export?format=csv&gid={self.gid}"
+        # csv_url2 = f"https://docs.google.com/spreadsheets/d/{self.sheetId_consolidated_report}/export?format=csv&gid={self.gidCr}"
 
         # Load into pandas DataFrame
         df = pd.read_csv(csv_url, dtype=str)
+        # df2 = pd.read_csv(csv_url2, dtype=str)
+
         for _, row in df.iterrows():
             self.record(row)
+
+    def get_bbc__profile(self, user):
+        try:
+            return self.get(user=user)
+        except ObjectDoesNotExist:
+            results = self.filter(last_name__contains=user.last_name)
+            if results.count() == 1:
+                profile = results.first()
+                profile.user = user
+                profile.save()
+                return profile
+            elif results.count() > 1:
+                return results
+            else:
+                return None
+            
 
 class Employees(models.Model):
     id = models.CharField(primary_key=True)
@@ -93,6 +114,7 @@ class Employees(models.Model):
     ended_date = models.DateField(null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
+    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, null=True)
     objects = EmployeesManager()
 
 class JobInformation(models.Model):

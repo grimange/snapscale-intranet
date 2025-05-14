@@ -1,0 +1,12 @@
+{% extends 'layouts/themes/01/base.html' %}
+{% load static %}
+{% load sass_tags %}
+
+{% block content %}
+    {% if multiple_profiles %}
+        {% include 'users/dialog/multiprofile.html' %}
+    {% else %}
+        {% include 'users/components/employee-information.html' %}
+    {% endif %}
+{% endblock content %}
+
