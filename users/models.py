@@ -71,20 +71,25 @@ class EmployeesManager(models.Manager):
         for _, row in df.iterrows():
             self.record(row)
 
+    def get_profile_json(self, employeeId):
+        try:
+            result = self.get(id=employeeId)
+            return {'employeeId': result.id, 'start_date': result.start_date,
+                    'name': f"{result.first_name} {result.last_name}",'birth_date': result.birth_date}
+        except ObjectDoesNotExist:
+            return None
+
     def get_bbc__profile(self, user):
         try:
             return self.get(user=user)
         except ObjectDoesNotExist:
-            results = self.filter(last_name__contains=user.last_name)
+            results = self.filter(last_name__contains=user.last_name, first_name__contains=user.first_name)
             if results.count() == 1:
                 profile = results.first()
                 profile.user = user
                 profile.save()
                 return profile
-            elif results.count() > 1:
-                return results
-            else:
-                return None
+            return None
             
 
 class Employees(models.Model):

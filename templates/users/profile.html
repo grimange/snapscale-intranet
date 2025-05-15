@@ -3,10 +3,17 @@
 {% load sass_tags %}
 
 {% block content %}
-    {% if multiple_profiles %}
-        {% include 'users/dialog/multiprofile.html' %}
-    {% else %}
+    {% if profile %}
         {% include 'users/components/employee-information.html' %}
+
+    {% else %}
+        <h5 class="text-danger">Cannot locate Employee Profile! Please provide your employee id</h5>
+        <div class="col-md-3">
+            {% include 'users/components/no-profile.html' %}
+        </div>
+        <div class="col-md-4" id="noProfileResult">
+
+        </div>
     {% endif %}
 {% endblock content %}
 
