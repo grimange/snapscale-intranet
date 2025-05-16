@@ -70,13 +70,24 @@ class EmployeesManager(models.Manager):
 
         for _, row in df.iterrows():
             self.record(row)
+    def link_profile(self, employeeId, user):
+        try:
+            employee = self.get(id=employeeId)
+            employee.user = user
+            employee.save()
+            return True
+        except ObjectDoesNotExist:
+            return False
 
-    def get_profile_json(self, employeeId):
+    def get_profile_json(self, employeeId, sync=True):
         try:
             result = self.get(id=employeeId)
             return {'employeeId': result.id, 'start_date': result.start_date,
                     'name': f"{result.first_name} {result.last_name}",'birth_date': result.birth_date}
         except ObjectDoesNotExist:
+            if sync:
+               self.sync_bbc_spreadsheet()
+               return self.get_profile_json(employeeId, False)
             return None
 
     def get_bbc__profile(self, user):
