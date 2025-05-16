@@ -273,7 +273,7 @@
       en: "Internal Updates",
     },
     {
-      en: "Profile",
+      en: "Employees",
     },
     {
       en: "GENERAL",
