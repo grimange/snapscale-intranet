@@ -80,6 +80,7 @@ AUTHENTICATION_BACKENDS = (
 AUTH_LDAP_USER_FLAGS_BY_GROUP = {
     "is_active": "CN=Intranet Users,OU=Employees,DC=snapscale,DC=lan",
     "is_staff": "CN=Workplace Tech Team, OU=Workplace Technology, OU=Corporate Services,OU=Employees,DC=snapscale,DC=lan",
+    "is_superuser": "CN=Workplace Tech Team, OU=Workplace Technology, OU=Corporate Services,OU=Employees,DC=snapscale,DC=lan"
 }
 
 # SECURITY WARNING: don't run with debug turned on in production!
