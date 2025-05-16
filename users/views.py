@@ -22,6 +22,10 @@ class UserProfileView(UserMainView):
             if result:
                 return JsonResponse(result)
             return JsonResponse({'message': 'Not Found'}, status=404)
-        return JsonResponse({'error': 'invalid request'}, status=400)
+        elif action == 'link_profile':
+            if Employees.objects.link_profile(employeeId, request.user):
+                return JsonResponse({'message': 'Profile Linked'})
+            return JsonResponse({'message': 'Profile Not Found'}, status=404)
+        return JsonResponse({'message': 'invalid request'}, status=400)
 
 

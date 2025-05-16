@@ -16,10 +16,11 @@ export class User extends IntranetGlobal {
 
             },
             success: function(response){
-
+                location.reload()
             },
             error: function(response){
                 console.log(response)
+                Swal.fire({title: "Error", text: response.responseJSON.message, icon: "error"})
             }
         })
     }

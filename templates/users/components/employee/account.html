@@ -1,0 +1,38 @@
+{% load static %}
+
+<div class="col-xl-4">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title mb-0">My Account</h4>
+            <div class="card-options">
+                <a class="card-options-collapse" href="#" data-bs-toggle="card-collapse">
+                    <i class="fe fe-chevron-up"></i></a>
+                <a class="card-options-remove" href="#" data-bs-toggle="card-remove">
+                    <i class="fe fe-x"></i>
+                </a>
+            </div>
+          </div>
+          <div class="card-body">
+            <form class="card theme-form dark-inputs">
+              <div class="row mb-2">
+                <div class="profile-title">
+                  <div class="d-flex"><img class="img-70 rounded-circle" alt="" src="{% static 'assets/images/user/7.jpg' %}">
+                    <div class="flex-grow-1">
+                      <h5 class="mb-1">{{ profile.first_name }} {{ profile.last_name }}</h5>
+{#                      <p>DESIGNER</p>#}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input class="form-control" type="text" id="username" value="{{ user.username }}" readonly="readonly">
+              </div>
+              <div class="mb-3">
+                <label class="form-label"></label>
+                <input class="form-control" type="text" value="Password management is done through Active Directory" readonly="readonly">
+              </div>
+            </form>
+          </div>
+        </div>
+</div>

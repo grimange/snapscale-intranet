@@ -4,8 +4,9 @@
 
 {% block content %}
     {% if profile %}
-        {% include 'users/components/employee-information.html' %}
-
+        <div class="mt-1 pt-1">
+            {% include 'users/components/employee-information.html' %}
+        </div>
     {% else %}
         <h5 class="text-danger">Cannot locate Employee Profile! Please provide your employee id</h5>
         <div class="col-md-3">

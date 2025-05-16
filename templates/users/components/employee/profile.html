@@ -1,0 +1,167 @@
+<div class="col-xl-8">
+        <form class="card theme-form dark-inputs" id="employeeForm">
+          <div class="card-header">
+            <h4 class="card-title mb-0">Employee Profile - {{ profile.status }} {{ profile.ended_date | default:"" }}</h4>
+            <div class="card-options"><a class="card-options-collapse" href="#" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a class="card-options-remove" href="#" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a></div>
+          </div>
+          <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-4 col-md-4">
+                        <div class="mb-3">
+                            <label for="employeeId" class="form-label">Employee ID</label>
+                            <input class="form-control" type="text" value="{{ profile.id }}" id="employeeId" readonly="readonly" name="employeeId">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="mb-3">
+                            <label for="start_date" class="form-label">Start Date</label>
+                            <input class="form-control" type="text" value="{{ profile.start_date }}" id="start_date" name="start_date">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="mb-3">
+                            <label for="birth_date" class="form-label">Birth Date</label>
+                            <input class="form-control" type="text" value="{{ profile.birth_date }}" id="birth_date" name="birth_date">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-4">
+                        <div class="mb-3">
+                          <label for="first_name" class="form-label">First Name</label>
+                          <input class="form-control" type="text" value="{{ profile.first_name }}" id="first_name" name="first_name">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="mb-3">
+                          <label for="middle_name" class="form-label">Middle Name</label>
+                          <input class="form-control" type="text" value="{{ profile.middle_name }}" id="middle_name" name="middle_name">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="mb-3">
+                          <label for="last_name" class="form-label">Last Name</label>
+                          <input class="form-control" type="text" value="{{ profile.last_name }}" id="last_name" name="last_name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                          <label for="permanent_address" class="form-label">Permanent Address</label>
+                          <input class="form-control" type="text" value="{{ profile.permanent_address }}" id="permanent_address" name="permanent_address">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                          <label for="temporary_address" class="form-label">Temporary Address</label>
+                          <input class="form-control" type="text" value="{{ profile.temporary_address }}" id="temporary_address" name="temporary_address">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 col-md-2">
+                        <div class="mb-3">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select class="form-select" id="gender" name="gender">
+                                <option value="Male" {% if profile.gender == 'Male' %} selected {% endif %}>Male</option>
+                                <option value="Female" {% if profile.gender == 'Female' %} selected {% endif %}>Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <div class="mb-3">
+                            <label for="marital_status" class="form-label">Martial Status</label>
+                            <select class="form-select" id="marital_status" name="marital_status">
+                                <option value="Single" {% if profile.marital_status == 'Single' %} selected {% endif %}>Single</option>
+                                <option value="Married" {% if profile.marital_status == 'Married' %} selected {% endif %}>Married</option>
+                                <option value="Divorced" {% if profile.marital_status == 'Divorced' %} selected {% endif %}>Divorced</option>
+                                <option value="Widowed" {% if profile.marital_status == 'Widowed' %} selected {% endif %}>Widowed</option>>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <div class="mb-3">
+                            <label for="contact_no" class="form-label">Contact No.</label>
+                            <input class="form-control" type="text" value="{{ profile.contact_no }}" id="contact_no" name="contact_no">
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <div class="mb-3">
+                            <label for="alternate_no" class="form-label">Alternate No.</label>
+                            <input class="form-control" type="text" value="{{ profile.alternate_no }}" id="alternate_no" name="alternate_no">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input class="form-control" type="text" value="{{ profile.email | lower}}" id="email" name="email">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 col-md-3">
+                        <div class="mb-3">
+                            <label for="emergency_contact" class="form-label">Emergency Contact # </label>
+                            <input class="form-control" type="text" value="{{ profile.emergency_contact }}" id="emergency_contact" name="emergency_contact">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="mb-3">
+                            <label for="alternate_ec" class="form-label">Alternate Emergency Contact #</label>
+                            <input class="form-control" type="text" value="{{ profile.alternate_ec }}" id="alternate_ec" name="alternate_ec">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="mb-3">
+                            <label for="ec_person" class="form-label">Emergency Contact Person</label>
+                            <input class="form-control" type="text" value="{{ profile.ec_person }}" id="ec_person" name="ec_person">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                        <div class="mb-3">
+                            <label for="mothers_maiden_name" class="form-label">Mothers Maiden Name</label>
+                            <input class="form-control" type="text" value="{{ profile.mothers_maiden_name }}" id="mothers_maiden_name" name="mothers_maiden_name">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="mb-3">
+                            <label for="father_name" class="form-label">Father Name</label>
+                            <input class="form-control" type="text" value="{{ profile.father_name }}" id="father_name" name="father_name">
+                        </div>
+                    </div>
+                </div>
+              <div class="row">
+                  <div class="col-sm-3 col-md-3">
+                      <div class="mb-3">
+                          <label for="sss_no" class="form-label">SSS No.</label>
+                          <input class="form-control" type="text" value="{{ profile.sss_no }}" id="sss_no" name="sss_no">
+                      </div>
+                  </div>
+                  <div class="col-sm-3 col-md-3">
+                      <div class="mb-3">
+                          <label for="philhealth_no" class="form-label">Philhealth No.</label>
+                          <input class="form-control" type="text" value="{{ profile.philhealth_no }}" id="philhealth_no" name="philhealth_no">
+                      </div>
+                  </div>
+                  <div class="col-sm-3 col-md-3">
+                      <div class="mb-3">
+                          <label for="hdmf_no" class="form-label">HDMF No.</label>
+                          <input class="form-control" type="text" value="{{ profile.hdmf_no }}" id="hdmf_no" name="hdmf_no">
+                      </div>
+                  </div>
+                  <div class="col-sm-3 col-md-3">
+                      <div class="mb-3">
+                          <label for="tin_id_no" class="form-label">TIN ID No.</label>
+                          <input class="form-control" type="text" value="{{ profile.tin_id_no }}" id="tin_id_no" name="tin_id_no">
+                      </div>
+                  </div>
+              </div>
+            </div>
+          <div class="card-footer text-end">
+            <button class="btn btn-primary" type="submit">Update</button>
+          </div>
+        </form>
+      </div>

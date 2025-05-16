@@ -1,5 +1,6 @@
 {% load static %}
 {% load sass_tags %}
+{% load group_tags %}
 
 <!-- Page Sidebar Start-->
 <div class="sidebar-wrapper" data-sidebar-layout="stroke-svg">
@@ -27,7 +28,9 @@
             </div>
           </li>
           {% include 'layouts/themes/01/sidebar/dashboard.html' %}
-{#          {% include 'layouts/themes/01/sidebar/employees.html' %}  #}
+          {% if user|in_group:"Workplace Tech Team" %}
+              {% include 'layouts/themes/01/sidebar/employees.html' %}
+          {% endif %}
           {% include 'layouts/themes/01/sidebar/resources.html' %}
           {% include 'layouts/themes/01/sidebar/faq_section.html' %}
           {% include 'layouts/themes/01/sidebar/managers_section.html' %}
