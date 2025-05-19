@@ -6,4 +6,6 @@ import {User} from "./user.js";
 
 $(document).ready(function(){
     new User().load_no_profile()
+    new User().load_update_profile()
 })
+

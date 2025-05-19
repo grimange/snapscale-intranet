@@ -29,7 +29,7 @@ class EmployeesManager(models.Manager):
             date_str = re.sub(r'(\d+)(st|nd|rd|th)', r'\1', str(date_string).strip())
 
             # Try different possible formats
-            for fmt in ("%B-%d-%Y", "%B %d, %Y", "%d-%b-%Y", "%m/%d/%y", "%m/%d/%Y"):
+            for fmt in ("%B-%d-%Y", "%b. %d, %Y", "%B %d, %Y", "%d-%b-%Y", "%m/%d/%y", "%m/%d/%Y"):
                 try:
                     return datetime.strptime(date_str, fmt)
                 except ValueError:
@@ -54,7 +54,12 @@ class EmployeesManager(models.Manager):
         employee = self.row_to_correct_dict(row)
         if employee['start_date']:
             try:
-                return self.get(id=employee['id'])
+                profile =  self.get(id=employee['id'])
+                if profile.status != employee['status']:
+                    profile.status = employee['status']
+                    profile.ended_date = employee['ended_date']
+                    profile.save()
+                return profile
             except ObjectDoesNotExist:
                 return self.create(**employee)
         return None
@@ -101,7 +106,37 @@ class EmployeesManager(models.Manager):
                 profile.save()
                 return profile
             return None
-            
+
+    def get_employees_json_list(self):
+        pass
+
+    def update_profile(self, data):
+        try:
+            profile = self.get(id=data['employeeId'])
+            profile.first_name = self.cleanUp(data['first_name'])
+            profile.middle_name = self.cleanUp(data['middle_name'])
+            profile.last_name = self.cleanUp(data['last_name'])
+            profile.birth_date = self.get_datetime_(data['birth_date'])
+            profile.gender = self.cleanUp(data['gender'])
+            profile.marital_status = self.cleanUp(data['marital_status'])
+            profile.permanent_address = self.cleanUp(data['permanent_address'])
+            profile.temporary_address = self.cleanUp(data['temporary_address'])
+            profile.contact_no = self.cleanUp(data['contact_no'])
+            profile.alternate_no = self.cleanUp(data['alternate_no'])
+            profile.emergency_contact = self.cleanUp(data['emergency_contact'])
+            profile.alternate_ec = self.cleanUp(data['alternate_ec'])
+            profile.ec_person = self.cleanUp(data['ec_person'])
+            profile.email = self.cleanUp(data['email'])
+            profile.mothers_maiden_name = self.cleanUp(data['mothers_maiden_name'])
+            profile.father_name = self.cleanUp(data['father_name'])
+            profile.sss_no = self.cleanUp(data['sss_no'])
+            profile.philhealth_no = self.cleanUp(data['philhealth_no'])
+            profile.hdmf_no = self.cleanUp(data['hdmf_no'])
+            profile.tin_id_no = self.cleanUp(data['tin_id_no'])
+            profile.save()
+            return True
+        except ObjectDoesNotExist:
+            return False
 
 class Employees(models.Model):
     id = models.CharField(primary_key=True)
