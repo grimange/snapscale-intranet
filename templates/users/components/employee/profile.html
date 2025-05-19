@@ -1,5 +1,5 @@
 <div class="col-xl-8">
-        <form class="card theme-form dark-inputs" id="employeeForm">
+        <form class="card theme-form dark-inputs" id="employeeForm" method="post">
           <div class="card-header">
             <h4 class="card-title mb-0">Employee Profile - {{ profile.status }} {{ profile.ended_date | default:"" }}</h4>
             <div class="card-options"><a class="card-options-collapse" href="#" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a class="card-options-remove" href="#" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a></div>
@@ -15,7 +15,7 @@
                     <div class="col-sm-4 col-md-4">
                         <div class="mb-3">
                             <label for="start_date" class="form-label">Start Date</label>
-                            <input class="form-control" type="text" value="{{ profile.start_date }}" id="start_date" name="start_date">
+                            <input class="form-control" type="text" value="{{ profile.start_date }}" id="start_date" name="start_date" readonly="readonly">
                         </div>
                     </div>
                     <div class="col-sm-4 col-md-4">
@@ -161,7 +161,7 @@
               </div>
             </div>
           <div class="card-footer text-end">
-            <button class="btn btn-primary" type="submit">Update</button>
+            <button class="btn btn-primary" type="submit" id="employeeFormSubmit">Update</button>
           </div>
         </form>
       </div>
