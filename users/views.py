@@ -10,8 +10,8 @@ class UserMainView(LoginRequiredMixin, PermissionRequiredMixin, View):
 class UserProfileListView(UserMainView):
     template_name = 'users/profile_list.html'
     def get(self, request, *args, **kwargs):
-
-        return render(request, self.template_name)
+        employees = Employees.objects.get_employees_json_list()
+        return render(request, self.template_name, {'employees': employees})
 
 class UserProfileView(UserMainView):
     template_name = 'users/profile.html'
