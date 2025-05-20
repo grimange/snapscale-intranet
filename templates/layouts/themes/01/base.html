@@ -11,6 +11,7 @@
         <meta name="csrf-token" content="{{ csrf_token }}">
         <title>{{ title|default:"Snapscale Intranet" }}</title>
         {% include 'layouts/themes/01/css-scripts.html' %}
+        {% block css %}  {% endblock css %}
     </head>
     <body>
         <!-- loader starts-->
@@ -30,5 +31,6 @@
             </div>
         </div>
         {% include 'layouts/themes/01/js-scripts.html' %}
+        {% block scriptcontent %} {% endblock %}
     </body>
 </html>
