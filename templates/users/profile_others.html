@@ -1,0 +1,12 @@
+{% extends 'layouts/themes/01/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="mt-1 pt-1">
+        {% include 'users/components/employee-information.html' %}
+    </div>
+{% endblock %}
+
+{% block scriptcontent %}
+<script src="{% static 'assets/js/users/main.js'  %}" type="module"></script>
+{% endblock scriptcontent %}

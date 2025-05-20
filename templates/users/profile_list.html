@@ -1,0 +1,23 @@
+{% extends 'layouts/themes/01/base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/jquery.dataTables.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/dataTables.bootstrap5.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+    <div class="m-1 p-1 border-1">
+        {% include 'users/components/employee/list.html' %}
+    </div>
+{% endblock content %}
+
+
+{% block scriptcontent %}
+    <script src="{% static 'assets/js/datatable/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/js/datatable/datatables/dataTables1.js' %}"></script>
+    <script src="{% static 'assets/js/datatable/datatables/dataTables.bootstrap5.js' %}"></script>
+    <script src="{% static 'assets/js/datatable/datatables/datatable.custom2.js' %}"></script>
+    <script src="{% static 'assets/js/users/list-main.js' %}" type="module"></script>
+{% endblock scriptcontent %}

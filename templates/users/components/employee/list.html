@@ -1,0 +1,38 @@
+<table class="table table-bordered" id="employeesTable">
+    <thead class="bg-info">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Marital Status</th>
+            <th>Contact No.</th>
+            <th>Emergency Contact No.</th>
+            <th>EC Person</th>
+            <th>Date Start</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employees %}
+            <tr>
+                <td><a href="{% url 'profile_others' employeeId=employee.employeeId %}">{{employee.employeeId}}</a></td>
+                <td>{{employee.name}}</td>
+                <td>{{ employee.gender }}</td>
+                <td>{{ employee.maritalStatus }}</td>
+                <td>{{ employee.contactNo }}</td>
+                <td>{{ employee.emergencyContact }}</td>
+                <td>{{ employee.ecPerson }}</td>
+                <td>{{ employee.startDate | date:"M d, Y" }}</td>
+                <td>
+                    {% if employee.status == 'Active' %}
+                        <span class="badge bg-success">{{ employee.status }}</span>
+                    {% elif employee.endedDate %}
+                        <span class="badge bg-danger">{{ employee.status }} | {{ employee.endedDate | date:"M d, Y" }}</span>
+                    {% else %}
+                        <span class="badge bg-danger">{{ employee.status }} </span>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

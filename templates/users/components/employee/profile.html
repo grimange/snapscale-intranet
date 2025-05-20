@@ -1,7 +1,13 @@
 <div class="col-xl-8">
         <form class="card theme-form dark-inputs" id="employeeForm" method="post">
           <div class="card-header">
-            <h4 class="card-title mb-0">Employee Profile - {{ profile.status }} {{ profile.ended_date | default:"" }}</h4>
+            <h4 class="card-title mb-0">
+                {% if profile.status == "Active" %}
+                    Employee Profile - <span class="badge bg-success">{{ profile.status }}</span>
+                {% else %}
+                    Employee Profile - <span class="badge bg-danger">{{ profile.status }} {{ profile.ended_date | default:"" }}</span>
+                {% endif %}
+            </h4>
             <div class="card-options"><a class="card-options-collapse" href="#" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a class="card-options-remove" href="#" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a></div>
           </div>
           <div class="card-body">
