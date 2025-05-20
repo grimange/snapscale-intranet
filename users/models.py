@@ -1,4 +1,5 @@
 import re
+from time import sleep
 import pandas as pd
 from datetime import datetime
 from django.db import models
@@ -107,8 +108,25 @@ class EmployeesManager(models.Manager):
                 return profile
             return None
 
+    def get_profile_by_id(self, employeeId, sync=True):
+        try:
+            return self.get(id=employeeId)
+        except ObjectDoesNotExist:
+            if sync:
+                self.sync_bbc_spreadsheet()
+                return self.get_profile_by_id(employeeId, False)
+            return None
+
     def get_employees_json_list(self):
-        pass
+        results = self.all()
+        employees = []
+        for result in results:
+            employees.append({'employeeId': result.id, 'name': f"{result.first_name} {result.last_name}",
+                         'startDate': result.start_date, 'gender': result.gender, 'maritalStatus': result.marital_status,
+                         'email': result.email, 'contactNo': result.contact_no, 'alternateNo': result.alternate_no,
+                         'emergencyContact': result.emergency_contact, 'alternateEc': result.alternate_ec,
+                              'ecPerson': result.ec_person, 'status': result.status, 'endedDate': result.ended_date})
+        return employees
 
     def update_profile(self, data):
         try:
