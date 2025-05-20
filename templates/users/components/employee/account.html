@@ -26,7 +26,7 @@
               </div>
               <div class="mb-3">
                 <label class="form-label">Username</label>
-                <input class="form-control" type="text" id="username" value="{{ user.username }}" readonly="readonly">
+                <input class="form-control" type="text" id="username" value="{{ profile.user.username | default:"NO DATA" }}" readonly="readonly">
               </div>
               <div class="mb-3">
                 <label class="form-label"></label>
