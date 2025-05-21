@@ -1,0 +1,43 @@
+{% load static %}
+<div class="col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="new-users-social">
+          <div class="d-flex"><img class="rounded-circle image-radius m-r-15" src="{% static 'assets/images/user/1.jpg' %}" alt="">
+            <div class="flex-grow-1">
+              <h6>{{ username }}</h6>
+              <p class="c-o-light">{{ post_date }}</p>
+            </div><span class="pull-right mt-0"><i data-feather="more-vertical"></i></span>
+          </div>
+        </div>
+        <div class="timeline-content">
+          {{ content }}
+          {% if comment_count >= 1 %}
+              <div class="like-content">
+                  <span class="pull-right comment-number">
+                      <span>{{ comment_count }}</span>
+                      <span><i class="fa-regular fa-comments"></i></span>
+                  </span>
+              </div>
+          {% endif %}
+          <div class="social-chat">
+{#            {% include 'dashboard/components/posts/comments/your-msg-template.html' %} #}
+{#            {% include 'dashboard/components/posts/comments/other-msg-template.html' %} #}
+{#            <div class="text-center"><a href="#!">More Comments</a></div> #}
+          </div>
+          <div class="comments-box">
+            <div class="d-flex"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="{% static 'assets/images/user/1.jpg' %}">
+              <div class="flex-grow-1">
+                <div class="input-group text-box">
+                  <input class="form-control input-txt-bx" type="text" name="message-to-send" placeholder="Post your comments">
+                  <div class="input-group-append">
+                    <button class="btn btn-transparent" type="button"><i class="fa-regular fa-face-smile">  </i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
