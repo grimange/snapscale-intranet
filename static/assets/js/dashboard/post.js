@@ -8,7 +8,40 @@ export class Post extends IntranetGlobal{
     constructor() {
         super();
     }
+    post_template(username, post_date, content) {
+        return '<div class="col-sm-12">' +
+                    '<div class="card">' +
+                        '<div class="card-body">' +
+                            '<div class="new-users-social">' +
+                                '<div class="d-flex"><img class="rounded-circle image-radius m-r-15" src="/static/assets/images/user/1.jpg" alt="">' +
+                                    '<div class="flex-grow-1">' +
+                                        '<h6>'+ username +'</h6>'+
+                                        '<p class="c-o-light">'+ post_date +'</p>'+
+                                    '</div><span class="pull-right mt-0"><i data-feather="more-vertical"></i></span>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="timeline-content">' +
+                                content+
+                                '<div class="social-chat">' +
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+               '</div>'
+    }
+    load_post(responses) {
+        const self = this
+        const post_wrapper = $("#dashboard-post-list")
 
+        if(Array.isArray(responses) && responses.length > 0){
+            responses.forEach(function(response){
+                post_wrapper.append(self.post_template(response.username, response.post_date, response.post_content))
+            })
+        }
+        else {
+            post_wrapper.html("<h5>NO POST</h5>")
+        }
+    }
     load_new_post(){
         const self = this
         const submit = $("#newPostSubmit")
@@ -32,6 +65,8 @@ export class Post extends IntranetGlobal{
 
                 },
                 success: function(response){
+                    self.load_post(response)
+
                     submit.attr("disabled", false)
                     submit.html("Post")
                 },
