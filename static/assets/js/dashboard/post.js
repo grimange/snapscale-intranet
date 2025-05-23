@@ -8,8 +8,8 @@ export class Post extends IntranetGlobal{
     constructor() {
         super();
     }
-    post_template(username, post_date, content) {
-        return '<div class="col-sm-12">' +
+    post_template(postId, username, post_date, content) {
+        return '<div class="col-sm-12" id="post_'+ postId +'">' +
                     '<div class="card">' +
                         '<div class="card-body">' +
                             '<div class="new-users-social">' +
@@ -24,6 +24,21 @@ export class Post extends IntranetGlobal{
                                 content+
                                 '<div class="social-chat">' +
                                 '</div>'+
+                                '<div class="comments-box">' +
+                                    '<div class="d-flex">' +
+                                        '<img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="/static/assets/images/user/1.jpg">' +
+                                        '<div class="flex-grow-1">' +
+                                            '<div class="input-group text-box">' +
+                                                '<input class="form-control input-txt-bx" type="text" name="message-to-send" placeholder="Post your comments">'+
+                                                '<div class="input-group-append">' +
+                                                    '<button class="btn btn-transparent" type="button" id="commentSaveBtn">' +
+                                                        '<i class="fa-regular fa-face-smile"></i>' +
+                                                    '</button>'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
                             '</div>'+
                         '</div>'+
                     '</div>'+
@@ -34,8 +49,9 @@ export class Post extends IntranetGlobal{
         const post_wrapper = $("#dashboard-post-list")
 
         if(Array.isArray(responses) && responses.length > 0){
+            post_wrapper.empty()
             responses.forEach(function(response){
-                post_wrapper.append(self.post_template(response.username, response.post_date, response.post_content))
+                post_wrapper.append(self.post_template(response.id, response.username, response.post_date, response.post_content))
             })
         }
         else {
