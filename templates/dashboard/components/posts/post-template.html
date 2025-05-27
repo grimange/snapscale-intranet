@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="timeline-content">
-          {{ content }}
+          {{ content | safe }}
           {% if comment_count >= 1 %}
               <div class="like-content">
                   <span class="pull-right comment-number">

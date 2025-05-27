@@ -29,9 +29,9 @@ export class Post extends IntranetGlobal{
                                         '<img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="/static/assets/images/user/1.jpg">' +
                                         '<div class="flex-grow-1">' +
                                             '<div class="input-group text-box">' +
-                                                '<input class="form-control input-txt-bx" type="text" name="message-to-send" placeholder="Post your comments">'+
+                                                '<input class="form-control input-txt-bx" type="text" name="messageToSend_'+ postId +'" placeholder="Post your comments">'+
                                                 '<div class="input-group-append">' +
-                                                    '<button class="btn btn-transparent" type="button" id="commentSaveBtn">' +
+                                                    '<button class="btn btn-transparent commentBtn" type="button" data-post-id="'+ postId +'">' +
                                                         '<i class="fa-regular fa-face-smile"></i>' +
                                                     '</button>'+
                                                 '</div>'+
@@ -53,6 +53,11 @@ export class Post extends IntranetGlobal{
             responses.forEach(function(response){
                 post_wrapper.append(self.post_template(response.id, response.username, response.post_date, response.post_content))
             })
+
+            $('.commentBtn').off("click").on("click", function(e){
+                e.preventDefault()
+
+            })
         }
         else {
             post_wrapper.html("<h5>NO POST</h5>")
@@ -71,9 +76,7 @@ export class Post extends IntranetGlobal{
             }
 
             $.ajax({type: 'post', url: self.dashboard_post_url, dataType: 'json',
-                data: {post_content: content.getData(),
-                       csrfmiddlewaretoken: self.csrftoken,
-                       action: 'new_post'
+                data: {post_content: content.getData(), csrfmiddlewaretoken: self.csrftoken, action: 'new_post'
                 },
                 beforeSend: function () {
                     submit.attr("disabled", true)
@@ -81,6 +84,7 @@ export class Post extends IntranetGlobal{
 
                 },
                 success: function(response){
+                    console.log(response)
                     self.load_post(response)
 
                     submit.attr("disabled", false)

@@ -20,7 +20,6 @@ class DashboardViewPost(DashboardViewMain):
         action = request.POST.get('action', None)
         if action == 'new_post':
             content = request.POST.get('post_content', None)
-            Post.objects.create(user=request.user, content=content)
-            posts = Post.objects.get_all_json()
-            return JsonResponse({'posts': posts}, safe=False)
+            Post.objects.create(created_by=request.user, content=content)
+            return JsonResponse(Post.objects.get_all_json(), safe=False)
         return JsonResponse({'message': 'invalid request'}, status=400)
